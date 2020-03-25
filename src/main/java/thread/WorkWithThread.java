@@ -22,46 +22,41 @@ public class WorkWithThread {
         return array;
     }
 
-    private static double[] calculate(double[] a) {
+    private static double[] calculate(double[] a, int k) {
         long m = currentTimeMillis();
         double[] b = new double[a.length];
         for (int i = 0; i < a.length; i++) {
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                outputInConsole("ban");
-            }
-            b[i] += Math.pow(a[i], 1.789);
+            for (int j = 0; j < k; j++)
+                b[i] += Math.pow(a[i], 1.789);
         }
         outputInConsole("Time without threads " + (currentTimeMillis() - m));
         return b;
     }
 
-    private static double[] threadsCalculate(double[] a) {
+    private static double[] threadsCalculate(double[] a, int k) {
         long m = currentTimeMillis();
         double[] b = new double[a.length];
         Thread thread1 = new Thread(() -> {
             for (int i = 0; i <= a.length / 2; i++) {
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    outputInConsole("ban");
-                }
-                b[i] += Math.pow(a[i], 1.789);
+                for (int j = 0; j < k; j++)
+                    b[i] += Math.pow(a[i], 1.789);
             }
         });
         Thread thread2 = new Thread(() -> {
             for (int i = (a.length / 2) + 1; i < a.length; i++) {
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    outputInConsole("ban");
+                for (int j = 0; j < k; j++) {
                 }
                 b[i] += Math.pow(a[i], 1.789);
             }
         });
         thread1.start();
         thread2.start();
+        try {
+            thread1.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            outputInConsole("ban");
+        }
         outputInConsole("Time with threads " + (currentTimeMillis() - m));
         return b;
     }
@@ -72,10 +67,11 @@ public class WorkWithThread {
         }
     }
 
-    public static void main(String[] args) {
-        outputInConsole("Input size of array");
+    public static void main(String[] args) throws InterruptedException {
+        outputInConsole("Input size of array and difficulty");
         double[] array = randomArray(Integer.parseInt(getAnswer()));
-        threadsCalculate(array);
-        calculate(array);
+        int k = Integer.parseInt(getAnswer());
+        sout(threadsCalculate(array, k));
+        sout(calculate(array, k));
     }
 }
