@@ -1,18 +1,41 @@
 package algorithms;
 
+import java.util.Scanner;
+
 public class Lab2 {
 
-    private static boolean less(Comparable v, Comparable w) {
+    private static String getAnswer() {
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
+    }
+
+    private static Double[] randomArray(int n) {
+        Double[] array = new Double[n];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = Math.random() * 1000;
+        }
+        return array;
+    }
+
+    public static void main(String[] argv) {
+        Double[] array = new Double[Integer.parseInt(getAnswer())];
+        selection(array);
+        insertion(array);
+        shaker(array);
+        heap(array);
+    }
+
+    private static boolean less(Double v, Double w) {
         return v.compareTo(w) < 0;
     }
 
-    private static void exch(Comparable[] a, int i, int j) {
-        Comparable t = a[i];
+    private static void exch(Double[] a, int i, int j) {
+        Double t = a[i];
         a[i] = a[j];
         a[j] = t;
     }
 
-    public static void selection(Comparable[] a) {
+    public static void selection(Double[] a) {
         int N = a.length;
         for (int i = 0; i < N; i++) {
             int min = i;
@@ -23,7 +46,7 @@ public class Lab2 {
         }
     }
 
-    public static void insertion(Comparable[] a) {
+    public static void insertion(Double[] a) {
         int N = a.length;
         for (int i = 1; i < N; i++) {
             for (int j = i; j > 0 && less(a[j], a[j - 1]); j--) {
@@ -33,7 +56,7 @@ public class Lab2 {
     }
 
 
-    public static void shaker(Comparable[] a) {
+    public static void shaker(Double[] a) {
         int buff;
         int left = 0;
         int right = a.length - 1;
@@ -60,17 +83,17 @@ public class Lab2 {
         quick(a, 0, a.length - 1);
     }*/
 
-    public static void quick(Comparable[] a, int lo, int hi) {
+    public static void quick(Double[] a, int lo, int hi) {
         if (hi <= lo) return;
         int j = partition(a, lo, hi);
         quick(a, lo, j - 1);
         quick(a, j + 1, hi);
     }
 
-    public static int partition(Comparable[] a, int lo, int hi) {
+    public static int partition(Double[] a, int lo, int hi) {
         int i = lo;
         int j = hi + 1;
-        Comparable v = a[lo];
+        Double v = a[lo];
         while (true) {
             while (less(a[++i], v)) if (i == hi) break;
             while (less(v, a[--j])) if (j == lo) break;
@@ -81,7 +104,7 @@ public class Lab2 {
         return j;
     }
 
-    public void heap(int[] arr) {
+    public static void heap(Double[] arr) {
         int n = arr.length;
 
         // Построение кучи (перегруппируем массив)
@@ -91,7 +114,7 @@ public class Lab2 {
         // Один за другим извлекаем элементы из кучи
         for (int i = n - 1; i >= 0; i--) {
             // Перемещаем текущий корень в конец
-            int temp = arr[0];
+            double temp = arr[0];
             arr[0] = arr[i];
             arr[i] = temp;
 
@@ -100,7 +123,7 @@ public class Lab2 {
         }
     }
 
-    void heapify(int[] arr, int n, int i) {
+    public static void heapify(Double[] arr, int n, int i) {
         int largest = i; // Инициализируем наибольший элемент как корень
         int l = 2 * i + 1; // левый = 2*i + 1
         int r = 2 * i + 2; // правый = 2*i + 2
@@ -114,7 +137,7 @@ public class Lab2 {
             largest = r;
         // Если самый большой элемент не корень
         if (largest != i) {
-            int swap = arr[i];
+            double swap = arr[i];
             arr[i] = arr[largest];
             arr[largest] = swap;
 
@@ -122,5 +145,4 @@ public class Lab2 {
             heapify(arr, n, largest);
         }
     }
-
 }
