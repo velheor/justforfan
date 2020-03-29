@@ -1,4 +1,4 @@
-package university.examplesoferrors;
+package com.university.examplesoferrors;
 
 import static java.lang.String.format;
 

@@ -1,4 +1,4 @@
-package codewars;
+package com.codewars;
 
 import java.util.ArrayList;
 import java.util.Collections;
