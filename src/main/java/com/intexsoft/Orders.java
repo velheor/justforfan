@@ -1,28 +1,11 @@
 package com.intexsoft;
 
-import java.util.Date;
-
 public class Orders {
-    int orderno;
-    String date;
-    String trackingno;
-    int custid;
+    float orderno;
     Customer customer;
 
-    public void setOrderno(int orderno) {
+    public void setOrderno(float orderno) {
         this.orderno = orderno;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public void setTrackingno(String trackingno) {
-        this.trackingno = trackingno;
-    }
-
-    public void setCustid(int custid) {
-        this.custid = custid;
     }
 
     public void setCustomer(Customer customer) {
