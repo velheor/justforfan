@@ -1,4 +1,4 @@
-package com.algorithms;
+package com.university.algorithms;
 
 import java.util.Scanner;
 
@@ -23,6 +23,8 @@ public class Lab2 {
         insertion(array);
         shaker(array);
         heap(array);
+        quicksort(array, 0, array.length - 1);
+
     }
 
     private static boolean less(Double v, Double w) {
@@ -57,51 +59,31 @@ public class Lab2 {
 
 
     public static void shaker(Double[] a) {
-        int buff;
-        int left = 0;
-        int right = a.length - 1;
-        do {
-            for (int i = left; i < right; i++) {
+        boolean swapped = true;
+        int start = 0;
+        int end = a.length;
+
+        while (swapped == true) {
+            swapped = false;
+            for (int i = start; i < end - 1; ++i) {
                 if (less(a[i + 1], a[i])) {
                     exch(a, i, i + 1);
+                    swapped = true;
                 }
             }
-            right--;
-            for (int i = right; i > left; i--) {
-                if (less(a[i], a[i - 1])) {
-                    exch(a, i, i - 1);
+
+            if (swapped == false)
+                break;
+            swapped = false;
+            end = end - 1;
+            for (int i = end - 1; i >= start; i--) {
+                if (less(a[i + 1], a[i])) {
+                    exch(a, i, i + 1);
+                    swapped = true;
                 }
             }
-            left++;
-        } while (left < right);
-    }
-
-    /*public static void random(Comparable[] a) {
-        for (int i = 0; i < 3; ++i) {
-            swap(a[i], a[rand() % 3]);
+            start = start + 1;
         }
-        quick(a, 0, a.length - 1);
-    }*/
-
-    public static void quick(Double[] a, int lo, int hi) {
-        if (hi <= lo) return;
-        int j = partition(a, lo, hi);
-        quick(a, lo, j - 1);
-        quick(a, j + 1, hi);
-    }
-
-    public static int partition(Double[] a, int lo, int hi) {
-        int i = lo;
-        int j = hi + 1;
-        Double v = a[lo];
-        while (true) {
-            while (less(a[++i], v)) if (i == hi) break;
-            while (less(v, a[--j])) if (j == lo) break;
-            if (i >= j) break;
-            exch(a, i, j);
-        }
-        exch(a, lo, j);
-        return j;
     }
 
     public static void heap(Double[] arr) {
@@ -144,5 +126,78 @@ public class Lab2 {
             // Рекурсивно преобразуем в двоичную кучу затронутое поддерево
             heapify(arr, n, largest);
         }
+    }
+
+    /* This function partitions a[] in three parts
+       a) a[l..i] contains all elements smaller than pivot
+       b) a[i+1..j-1] contains all occurrences of pivot
+       c) a[j..r] contains all elements greater than pivot */
+    public static void partition(Double[] a, int l, int r, int i, int j) {
+        i = l - 1;
+        j = r;
+        int p = l - 1, q = r;
+        Double v = a[r];
+
+        while (true) {
+            // From left, find the first element greater than
+            // or equal to v. This loop will definitely terminate
+            // as v is last element
+            while (a[++i] < v) ;
+
+            // From right, find the first element smaller than or
+            // equal to v
+            while (v < a[--j])
+                if (j == l)
+                    break;
+
+            // If i and j cross, then we are done
+            if (i >= j) break;
+
+            // Swap, so that smaller goes on left greater goes on right
+            exch(a, i, j);
+
+            // Move all same left occurrence of pivot to beginning of
+            // array and keep count using p
+            if (a[i] == v) {
+                p++;
+                exch(a, p, i);
+            }
+
+            // Move all same right occurrence of pivot to end of array
+            // and keep count using q
+            if (a[j] == v) {
+                q--;
+                exch(a, j, q);
+            }
+        }
+
+        // Move pivot element to its correct index
+        exch(a, i, r);
+
+        // Move all left same occurrences from beginning
+        // to adjacent to arr[i]
+        j = i - 1;
+        for (int k = l; k < p; k++, j--)
+            exch(a, k, j);
+
+        // Move all right same occurrences from end
+        // to adjacent to arr[i]
+        i = i + 1;
+        for (int k = r - 1; k > q; k--, i++)
+            exch(a, i, k);
+    }
+
+    // 3-way partition based quick sort
+    public static void quicksort(Double[] a, int l, int r) {
+        if (r <= l) return;
+
+        int i = 0, j = 0;
+
+        // Note that i and j are passed as reference
+        partition(a, l, r, i, j);
+
+        // Recur
+        quicksort(a, l, j);
+        quicksort(a, i, r);
     }
 }

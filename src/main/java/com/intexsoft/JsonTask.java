@@ -3,7 +3,6 @@ package com.intexsoft;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,18 +23,20 @@ public class JsonTask {
             if (rl.contains("orders")) {
                 orders = new Orders();
             }
+
             if (rl.contains("orderno")) {
-                String test = rl.substring((rl.indexOf(':'))).split("\"")[1];
-                float test1 = Float.parseFloat(test);
                 orders.setOrderno(Float.parseFloat(rl.substring((rl.indexOf(':'))).split("\"")[1]));
             }
+
             if (rl.contains("customer")) {
                 customer = new Customer();
                 orders.setCustomer(customer);
             }
+
             if (rl.contains("custid")) {
                 customer.setCustid(Integer.parseInt(rl.substring((rl.indexOf(':'))).split("\"")[1]));
             }
+
             if (rl.contains("fname")) {
                 customer.setfname(rl.substring((rl.indexOf(':'))).split("\"")[1]);
             }

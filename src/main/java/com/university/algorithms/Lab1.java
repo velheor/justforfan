@@ -1,4 +1,4 @@
-package com.algorithms;
+package com.university.algorithms;
 
 import java.io.IOException;
 import java.math.BigInteger;
