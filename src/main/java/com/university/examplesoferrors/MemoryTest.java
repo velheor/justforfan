@@ -19,7 +19,10 @@ public class MemoryTest {
         while (true) {
             Object c = v;
             v = new Object() {
-                Object a = c;
+                final float[] q = new float[1000000];
+                final float[] w = new float[1000000];
+                final float[] e = new float[1000000];
+                final Object a = c;
             };
         }
     }
