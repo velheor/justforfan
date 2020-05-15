@@ -4,16 +4,15 @@ import java.util.Arrays;
 
 public class Lab3 {
     public static void main(String[] argv) {
-        Integer[] buyer = {5, 1, 2};
-        Integer[] seller = {4};
-        int price = 8;
+        Integer[] buyer = {1, 1, 1};
+        Integer[] seller = {11};
         int amountOfMoney = sumOfMoney(unionTwoMassives(buyer, seller));
         Integer[] canBuy = new Integer[amountOfMoney];
 
         Arrays.fill(canBuy, 0);
         canBuy[0] = 1;
         for (Integer coin : buyer) {
-            for (int i = amountOfMoney-1; i > 0; i--) {
+            for (int i = amountOfMoney - 1; i > 0; i--) {
                 if ((canBuy[i] == 1) && ((i + coin) <= amountOfMoney)) {
                     canBuy[i + coin] = 1;
                 }
@@ -27,10 +26,15 @@ public class Lab3 {
                 }
             }
         }
-        if (canBuy[price] == 1) {
-            System.out.println("Yes");
-        } else
-            System.out.println("No");
+        for (int i = sumOfMoney(buyer); i > 0; i--) {
+            if (canBuy[i] == 0) {
+                System.out.println("Can buy but no change");
+                System.out.println(i);
+                return;
+            }
+        }
+        System.out.println("Can buy all");
+
     }
 
     public static int sumOfMoney(Integer[] allMoney) {
@@ -56,24 +60,6 @@ public class Lab3 {
 
         return c;
     }
-
-    public static void insertionSort(Integer[] a) {
-        int N = a.length;
-        for (int i = 1; i < N; i++) {
-            for (int j = i; j > 0 && less(a[j], a[j - 1]); j--) {
-                exch(a, j, j - 1);
-            }
-        }
-    }
-
-    private static boolean less(Integer v, Integer w) {
-        return v.compareTo(w) < 0;
-    }
-
-    private static void exch(Integer[] a, int i, int j) {
-        int t = a[i];
-        a[i] = a[j];
-        a[j] = t;
-    }
 }
+
 
