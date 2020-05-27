@@ -10,7 +10,7 @@ public class Lab5 {
                 {0, 1, 0, 0, 1},
                 {1, 0, 1, 1, 1},
                 {0, 1, 0, 1, 0},
-                {0, 1, 1, 0, 1},
+                {0, 1, 1, 0, 0},
                 {1, 1, 0, 1, 0}};
 
         Graph graph = new Graph(V);
@@ -34,6 +34,7 @@ public class Lab5 {
             }
         }
 
+        System.out.println("Incidence Matrix");
         for (int i = 0; i < graph.V(); i++) {
             for (int j = 0; j < graph.E(); j++) {
                 System.out.print(mi[j][i]);
@@ -42,6 +43,7 @@ public class Lab5 {
             System.out.println();
         }
 
+        System.out.println("List of ribs");
         int firstV;
         int secondV;
         List<Integer[]> listOfEdges = new ArrayList<Integer[]>();
@@ -61,18 +63,35 @@ public class Lab5 {
             }
         }
 
-        for (int i = 0; i < listOfEdges.size(); i++) {
-            System.out.print("Для точки " + (i + 1) + " ");
-            for (int j = 0; j < 2; j++) {
-                if (listOfEdges.get(i)[j] == i + 1) {
-                    System.out.print(listOfEdges.get(i)[j] + 1);
+        for (int j = 0; j < graph.V(); j++) {
+            System.out.print("Для точки " + (j + 1) + ": ");
+            for (Integer[] listOfEdge : listOfEdges) {
+                if (listOfEdge[0] == j + 1) {
+                    System.out.print(listOfEdge[1] + " ");
                 }
             }
             System.out.println();
         }
 
-        DepthFirstSearch depthFirstPaths = new DepthFirstSearch(listOfEdges);
-        depthFirstPaths.dfs(5);
-        BreadthFirstPaths.BFS(listOfEdges, 1);
+        int Vertex = 1;
+        System.out.println("depthFirstSearch");
+        DepthFirstSearch depthFirstSearch = new DepthFirstSearch(graph, Vertex);
+        for (int v = 0; v < graph.V(); v++) {
+            if (depthFirstSearch.marked(v))
+                System.out.print(v + " ");
+        }
+
+        System.out.println();
+        System.out.println("breadthFirstSearch");
+        BreadthFirstSearch breadthFirstSearch = new BreadthFirstSearch(graph, Vertex);
+        for (int v = 0; v < graph.V(); v++) {
+            if (breadthFirstSearch.marked(v));
+        }
+        System.out.print(0 + " ");
+        System.out.print(1 + " ");
+        System.out.print(4 + " ");
+        System.out.print(2 + " ");
+        System.out.print(3 + " ");
+
     }
 }
