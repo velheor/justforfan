@@ -1,4 +1,4 @@
-package com.codewars;
+package com.codewars.easy;
 
 public class CreditCardMask {
     public static void main(String[] args) {
