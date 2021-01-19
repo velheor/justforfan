@@ -5,6 +5,7 @@
 gradlew
 gradlew.bat
 /gradle/
-.iml
-/enumstest/
+/enumstest/ы
 /exception/
+.xml
+.iml

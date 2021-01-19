@@ -1,4 +1,4 @@
-package com.codewars;
+package com.codewars.easy;
 
 import java.util.*;
 
