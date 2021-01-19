@@ -6,19 +6,18 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Lab1 {
-    private String pat; // образец
-    private long patHash; // хеш-значение образца
-    private int M; // длина образца
-    private long Q; // большое простое число
-    private int R = 127; // размер алфавита
-    private long RM; // R^(M-1) % Q
+    private final String pat;
+    private final long patHash;
+    private final int M;
+    private final long Q;
+    private final int R = 127;
+    private long RM;
 
     public Lab1(String pat) {
-        this.pat = pat; // сохранение образца
+        this.pat = pat;
         M = pat.length();
         Q = longRandomPrime();
         RM = 1;
-        // вычисление R^(M-1) % Q для удаления старшей цифры
         for (int i = 1; i <= M - 1; i++)
             RM = (R * RM) % Q;
         patHash = hash(pat, M);
@@ -28,7 +27,6 @@ public class Lab1 {
         return true;
     }
 
-    // вычисление хэша
     private long hash(String key, int M) {
         long h = 0;
         for (int j = 0; j < M; j++)
@@ -37,13 +35,11 @@ public class Lab1 {
     }
 
     private int search(String txt) {
-        // поиск хэш-значения в тексте
         int N = txt.length();
         long txtHash = hash(txt, M);
         if (patHash == txtHash)
             return 0;
         for (int i = M; i < N; i++) {
-            // Удаление старшей цифры добавление младшей цифры и проверка на совпадение
             txtHash = (txtHash + Q - RM * txt.charAt(i - M) % Q) % Q;
             txtHash = (txtHash * R + txt.charAt(i)) % Q;
             if (patHash == txtHash)

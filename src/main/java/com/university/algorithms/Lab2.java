@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Lab2 {
     static int count = 0;
+    static int countP = 0;
 
     private static String getAnswer() {
         Scanner sc = new Scanner(System.in);
@@ -22,29 +23,34 @@ public class Lab2 {
         Double[] array = randomArray(Integer.parseInt(getAnswer()));
         Double[] a = array.clone();
         Double[] b = array.clone();
-        Double[] c = array.clone();
-        Double[] d = array.clone();
 
+        /*selection(array);
+        System.out.println("Selection " + count);
+        System.out.println("Selection " + countP);*/
 
-        selection(array);
-        System.out.println(count);
+        //countP = 0;
+        //count = 0;
+        //insertion(a);
+        //System.out.println("Insertion " + count);
+        //System.out.println("Instertion " + countP);
 
-        count = 0;
-        insertion(a);
-        System.out.println(count);
-
+        countP = 0;
         count = 0;
         cocktailSort(b);
-        System.out.println(count);
+        System.out.println("Shaker " + count);
+        System.out.println("Shaker " + countP);
 
+        /*countP = 0;
         count = 0;
         heap(c);
-        System.out.println(count);
+        System.out.println("Heap " + count);
+        System.out.println("Heap " + countP);*/
 
+        /*countP = 0;
         count = 0;
         sort(d, 0, d.length - 1);
-        System.out.println(count);
-        sout(d);
+        System.out.println("Fast " + count);
+        System.out.println("Fast " + countP);*/
     }
 
     private static void sout(Double[] a) {
@@ -54,15 +60,15 @@ public class Lab2 {
     }
 
     private static boolean less(Double v, Double w) {
+        countP++;
         return v.compareTo(w) < 0;
     }
 
-    private static Double[] exch(Double[] a, int i, int j) {
+    private static void exch(Double[] a, int i, int j) {
         Double t = a[i];
         a[i] = a[j];
         a[j] = t;
         count++;
-        return a;
     }
 
     public static void selection(Double[] a) {
@@ -82,6 +88,7 @@ public class Lab2 {
     public static void insertion(Double[] a) {
         int N = a.length;
         for (int i = 1; i < N; i++) {
+            countP++;
             for (int j = i; j > 0 && less(a[j], a[j - 1]); j--) {
                 exch(a, j, j - 1);
             }
@@ -95,22 +102,23 @@ public class Lab2 {
         int start = 0;
         int end = a.length;
 
-        while (swapped == true) {
+        while (swapped) {
             swapped = false;
-
             for (int i = start; i < end - 1; ++i) {
+                countP++;
                 if (a[i] > a[i + 1]) {
                     exch(a, i, i + 1);
                     swapped = true;
                 }
             }
-
-            if (swapped == false)
+            if (swapped == false) {
+                countP++;
                 break;
+            }
             swapped = false;
-
             end = end - 1;
             for (int i = end - 1; i >= start; i--) {
+                countP++;
                 if (a[i] > a[i + 1]) {
                     exch(a, i, i + 1);
                     swapped = true;
@@ -140,11 +148,15 @@ public class Lab2 {
         int l = 2 * i + 1;
         int r = 2 * i + 2;
 
-        if (l < n && arr[l] > arr[largest])
+        if (l < n && arr[l] > arr[largest]) {
+            countP++;
             largest = l;
+        }
 
-        if (r < n && arr[r] > arr[largest])
+        if (r < n && arr[r] > arr[largest]) {
+            countP++;
             largest = r;
+        }
         if (largest != i) {
             exch(arr, i, largest);
             heapify(arr, n, largest);
@@ -158,6 +170,7 @@ public class Lab2 {
         int i = lo + 1;
         while (i <= gt) {
             int cmp = a[i].compareTo(v);
+            countP++;
             if (cmp < 0) {
                 exch(a, lt++, i++);
             } else if (cmp > 0) {
@@ -173,8 +186,9 @@ public class Lab2 {
 
     private static boolean isSorted(Double[] a, int lo, int hi) {
         for (int i = lo + 1; i <= hi; i++)
-            if (less(a[i], a[i - 1])) return false;
+            if (less(a[i], a[i - 1])) {
+                return false;
+            }
         return true;
     }
-
 }
