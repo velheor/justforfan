@@ -1,11 +1,4 @@
 /.gradle/
-/build/
-/build/classes/java/main/
 /.idea/
-gradlew
-gradlew.bat
-/gradle/
-/enumstest/ы
-/exception/
-.xml
-.iml
+manifest.mf
+\build

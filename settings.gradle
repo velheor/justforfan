@@ -1,1 +1,6 @@
 rootProject.name = 'justforfan'
+include 'codewars'
+include 'codewars:easy'
+findProject(':codewars:easy')?.name = 'easy'
+include 'university'
+
