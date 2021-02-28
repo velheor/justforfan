@@ -25,6 +25,8 @@ subprojects {
     }
 
     dependencies {
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "${jupiterTestVersion}"
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: "${jupiterTestVersion}"
         compile group: 'log4j', name: 'log4j', version: '1.2.17'
     }
 }
