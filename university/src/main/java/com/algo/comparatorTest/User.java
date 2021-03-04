@@ -37,8 +37,7 @@ public class User {
       return false;
     }
     User user = (User) o;
-    return Objects.equals(getName(), user.getName()) &&
-        Objects.equals(getAge(), user.getAge());
+    return Objects.equals(getName(), user.getName()) && Objects.equals(getAge(), user.getAge());
   }
 
   @Override
@@ -48,9 +47,6 @@ public class User {
 
   @Override
   public String toString() {
-    return "User{" +
-        "name='" + name + '\'' +
-        ", age=" + age +
-        '}';
+    return "User{" + "name='" + name + '\'' + ", age=" + age + '}';
   }
 }

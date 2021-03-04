@@ -8,6 +8,6 @@ class TwoSumTest {
 
   @Test
   void solution() {
-    deepEquals(new int[]{0, 2}, TwoSum.solution(new int[]{1, 2, 3}, 4));
+    deepEquals(new int[] {0, 2}, TwoSum.solution(new int[] {1, 2, 3}, 4));
   }
 }

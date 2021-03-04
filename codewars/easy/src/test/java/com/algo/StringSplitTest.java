@@ -15,6 +15,5 @@ class StringSplitTest {
     assertEquals("[ab, cd, ef]", Arrays.toString(StringSplit.solution(s)));
     assertEquals("[He, ll, oW, or, ld]", Arrays.toString(StringSplit.solution(s1)));
     assertEquals("[ab, cd, e_]", Arrays.toString(StringSplit.solution(b)));
-
   }
 }

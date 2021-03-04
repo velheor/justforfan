@@ -41,7 +41,6 @@ class UserComparatorTest {
     System.out.println("After sort");
     users.forEach(user -> System.out.println(user.toString()));
 
-
     System.out.println("After sort");
     users.sort(Comparator.comparing(User::getAge).thenComparing(User::getName));
     users.forEach(user -> System.out.println(user.toString()));
@@ -54,7 +53,7 @@ class UserComparatorTest {
   }
 
   @Test
-  void stream(){
+  void stream() {
     assertTrue(users.stream().anyMatch(user -> user.getName().equals("Abc")));
   }
 }
