@@ -1,14 +1,12 @@
 plugins {
     id 'java'
     id 'war'
-    id "com.github.sherter.google-java-format" version "0.9"
 }
 
 allprojects {
     apply plugin: 'java'
     apply plugin: 'war'
     group = 'com.codewars'
-    sourceCompatibility = '12'
 }
 
 test {

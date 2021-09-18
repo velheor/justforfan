@@ -1,8 +1,10 @@
-package com.algo;
+package com.algo.kuy6;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
+
+import com.algo.kuy6.StringSplit;
 import org.junit.jupiter.api.Test;
 
 class StringSplitTest {

@@ -1,7 +1,8 @@
-package com.algo;
+package com.algo.kuy6;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.algo.kuy6.DRoot;
 import org.junit.jupiter.api.Test;
 
 class DRootTest {

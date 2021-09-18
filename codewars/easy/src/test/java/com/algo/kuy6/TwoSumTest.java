@@ -1,7 +1,8 @@
-package com.algo;
+package com.algo.kuy6;
 
 import static java.util.Objects.deepEquals;
 
+import com.algo.kuy6.TwoSum;
 import org.junit.jupiter.api.Test;
 
 class TwoSumTest {

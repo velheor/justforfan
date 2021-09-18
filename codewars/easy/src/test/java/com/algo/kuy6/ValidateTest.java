@@ -1,8 +1,9 @@
-package com.algo;
+package com.algo.kuy6;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.algo.kuy6.Validate;
 import org.junit.jupiter.api.Test;
 
 class ValidateTest {
