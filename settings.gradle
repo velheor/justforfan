@@ -3,4 +3,5 @@ include 'codewars'
 include 'codewars:easy'
 findProject(':codewars:easy')?.name = 'easy'
 include 'university'
+include 'examples_spring_project'
 
